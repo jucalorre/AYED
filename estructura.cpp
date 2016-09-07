@@ -147,7 +147,6 @@ void acomodar(int p)
 	}
 }
 
-
 void limpiar()
 {
 	cin.ignore();
