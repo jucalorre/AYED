@@ -8,6 +8,7 @@ struct alumno{
     string codigo;
     string nombre;
     string carrera;
+    int eliminado;
 }; alumno lista[30];
 
 void nuevo(int p);
@@ -15,6 +16,8 @@ void imprimir(int p);
 int buscar(string c, int p);
 void modificaciones(int p);
 void eliminar(int p);
+void limpiar();
+void acomodar(int p);
 
 int main()
 {
@@ -22,9 +25,8 @@ int main()
     string cod;
     do
     {
-	system("clear");
     cout<<"Base de datos alumnos\n\n"<<endl;
-    cout<<" 1) Agregar un alumno\n 2) Consulta\n 3) Modificar\n 4)Eliminar\n 5) Salir\n\nElije una opción [ ]\b\b";
+    cout<<" 1) Agregar un alumno\n 2) Consulta\n 3) Modificar\n 4) Eliminar\n 5) Ver todos los usuarios\n 5) Salir\n\nElije una opción [ ]\b\b";
     cin>>op;
     switch (op){
         case 1: 
@@ -45,23 +47,32 @@ int main()
             imprimir(s);
             break;
         case 4:
-			cout<<"Introduce el código del alumno a elimiar: ";
+			cout<<"Introduce el código del alumno a eliminar: ";
 			cin>>cod;
-			
+			eliminar(buscar(cod, p));
+			acomodar(p);
+			p--;
+			break;
             //Eliminar y que ordene
+        case 5:
+			for(int x=0; x<p; x++)	imprimir(x);
+			break;
         default:
             cout<<"Opción incorrecta....";
     }
-    }while(op!=5);
+    }while(op!=6);
     return 0;
 }
 void nuevo(int p){
+    limpiar();
     cout<<"Introducce el código: ";
     cin>>lista[p].codigo;
     cout<<"Introducce el nombre: ";
     cin>>lista[p].nombre;
     cout<<"Introducce la carrera: ";
     cin>>lista[p].carrera;
+    cout<<"\n\n"<<lista[p].nombre<<" ha sido registrado con exito! \nEspere unos segundos...";
+    limpiar();
     return;
 }
 void imprimir(int p)
@@ -71,6 +82,7 @@ void imprimir(int p)
      cout<<"Código: "<<lista[p].codigo<<endl;
      cout<<"Nombre: "<<lista[p].nombre<<endl;
      cout<<"Carrera: "<<lista[p].carrera<<endl;
+     cout<<"Numero de usuario: "<<p<<endl;
     }
      return;
 }
@@ -112,5 +124,33 @@ void modificaciones(int p){
 }
 void eliminar(int p)
 {
+	lista[p].nombre = "NULL";
+	lista[p].carrera = "NULL";
+	lista[p].codigo = "NULL";
+	cout<<"Usuario eliminado"<<endl;;
 	
+}
+
+void acomodar(int p)
+{
+	for(int x=0; x<=p; x++)
+	{
+		if(lista[x].nombre.compare("NULL")==0)
+		{
+			for(int it=x+1; it<=p; it++)
+			{
+				lista[it-1].nombre=lista[it].nombre;
+				lista[it-1].codigo=lista[it].codigo;
+				lista[it-1].carrera=lista[it].carrera;
+			}
+		}
+	}
+}
+
+
+void limpiar()
+{
+	cin.ignore();
+	cin.get();
+	system("clear");
 }
