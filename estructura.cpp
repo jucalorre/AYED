@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stdlib.h>
 #include<string.h>
 using namespace std;
 using std::string;
@@ -14,13 +15,14 @@ void imprimir(int p);
 int buscar(string c, int p);
 void modificaciones(int p);
 void eliminar(int p);
-int band=1;
+
 int main()
 {
     int p=0,op,s;
     string cod;
-    do{
-    
+    do
+    {
+	system("clear");
     cout<<"Base de datos alumnos\n\n"<<endl;
     cout<<" 1) Agregar un alumno\n 2) Consulta\n 3) Modificar\n 4)Eliminar\n 5) Salir\n\nElije una opción [ ]\b\b";
     cin>>op;
@@ -43,7 +45,7 @@ int main()
             imprimir(s);
             break;
         case 4:
-			cout<<"introduce el código del alumno a elimiar";
+			cout<<"Introduce el código del alumno a elimiar: ";
 			cin>>cod;
 			
             //Eliminar y que ordene
@@ -62,29 +64,37 @@ void nuevo(int p){
     cin>>lista[p].carrera;
     return;
 }
-void imprimir(int p){
+void imprimir(int p)
+{
+	if(p!=-1)
+	{
      cout<<"Código: "<<lista[p].codigo<<endl;
      cout<<"Nombre: "<<lista[p].nombre<<endl;
      cout<<"Carrera: "<<lista[p].carrera<<endl;
+    }
      return;
 }
 
 int buscar(string c, int p){
      int band=-1;
-     for(int x=0; x<=p;x++){
-         if(c.compare(lista[x].codigo)==0){
+     for(int x=0; x<=p;x++)
+     {
+         if(c.compare(lista[x].codigo)==0)
+         {
             band=x;
-          }
          }
+     }
          if (band==-1)
             cout<<"Código no encontrado....";
     return band;
 }
+
 void modificaciones(int p){
     int op;
     cout<<"Selecciona el dato a editar: \n1) Código\n2) Nombre\n3) Carrera\n [ ]\b\b";
     cin>>op;
-    switch (op){
+    switch (op)
+    {
         case 1: 
             cout<<"Introduce el código actualizado: ";
             cin>>lista[p].codigo;
