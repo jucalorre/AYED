@@ -1,4 +1,6 @@
 #include<iostream>
+#include<string>
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 using namespace std;
@@ -11,6 +13,8 @@ struct alumno{
     int eliminado;
 }; alumno lista[30];
 
+FILE *doc;
+
 void nuevo(int p);
 void imprimir(int p);
 int buscar(string c, int p);
@@ -18,15 +22,16 @@ void modificaciones(int p);
 void eliminar(int p);
 void limpiar();
 void acomodar(int p);
+void guardar(int p);
 
 int main()
 {
-    int p=0,op,s;
+	int p=0,op,s;
     string cod;
     do
     {
     cout<<"Base de datos alumnos\n\n"<<endl;
-    cout<<" 1) Agregar un alumno\n 2) Consulta\n 3) Modificar\n 4) Eliminar\n 5) Ver todos los usuarios\n 6) Salir\n\nElije una opción [ ]\b\b";
+    cout<<" 1) Agregar un alumno\n 2) Consulta\n 3) Modificar\n 4) Eliminar\n 5) Ver todos los usuarios\n 6) Tomar ejemplo \n7) Salir\n\nElije una opción [ ]\b\b";
     cin>>op;
     switch (op){
         case 1: 
@@ -57,10 +62,17 @@ int main()
         case 5:
 			for(int x=0; x<p; x++)	imprimir(x);
 			break;
+		case 6:
+			cout<<"introduce el codigo para separar el nombre";
+			cin>>cod;
+			s= buscar(cod, p);
+			guardar(s);
+			
+			break;
         default:
             cout<<"Opción incorrecta....";
     }
-    }while(op!=6);
+    }while(op!=7);
     return 0;
 }
 void nuevo(int p){
@@ -151,4 +163,19 @@ void limpiar()
 	cin.ignore();
 	cin.get();
 	system("clear");
+}
+
+void guardar(int p)
+{
+	/*doc = fopen("datos.txt", "a");*/
+	string out;
+	out=lista[p].nombre;
+	cout<<out;
+	char *holaMundo = strdup(out.c_str());
+	int len = strlen(holaMundo);
+	for(int i=0 ; i<=len;i++)
+	{
+		cout<<holaMundo[i]<<"-";
+	}
+	
 }
