@@ -26,7 +26,7 @@ int main()
     do
     {
     cout<<"Base de datos alumnos\n\n"<<endl;
-    cout<<" 1) Agregar un alumno\n 2) Consulta\n 3) Modificar\n 4) Eliminar\n 5) Ver todos los usuarios\n 5) Salir\n\nElije una opción [ ]\b\b";
+    cout<<" 1) Agregar un alumno\n 2) Consulta\n 3) Modificar\n 4) Eliminar\n 5) Ver todos los usuarios\n 6) Salir\n\nElije una opción [ ]\b\b";
     cin>>op;
     switch (op){
         case 1: 
@@ -64,14 +64,13 @@ int main()
     return 0;
 }
 void nuevo(int p){
-    limpiar();
-    cout<<"Introducce el código: ";
+    cout<<"\n\n\n\nIntroducce el código: ";
     cin>>lista[p].codigo;
     cout<<"Introducce el nombre: ";
     cin>>lista[p].nombre;
     cout<<"Introducce la carrera: ";
     cin>>lista[p].carrera;
-    cout<<"\n\n"<<lista[p].nombre<<" ha sido registrado con exito! \nEspere unos segundos...";
+    cout<<"\n\n"<<lista[p].nombre<<" ha sido registrado con exito! \nPresione enter para continuar...";
     limpiar();
     return;
 }
