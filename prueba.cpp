@@ -1,3 +1,4 @@
+#include<fstream>
 #include<iostream>
 #include<string>
 #include<stdio.h>
@@ -6,13 +7,11 @@
 using namespace std;
 using std::string;
 
-FILE *doc;
-
 
 int main()
 {
-	doc=fopen("datos.txt", "w");
-	fprintf(doc, "Hola perros");
+	ofstream op(datos.txt);
+	
 	cin.get();
 	return 0;
 }

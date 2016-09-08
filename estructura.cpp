@@ -79,7 +79,7 @@ void nuevo(int p){
     cout<<"\n\n\n\nIntroducce el código: ";
     cin>>lista[p].codigo;
     cout<<"Introducce el nombre: ";
-    cin>>lista[p].nombre;
+    cin>>lista[p].nombre; //intentar relizar con getline
     cout<<"Introducce la carrera: ";
     cin>>lista[p].carrera;
     cout<<"\n\n"<<lista[p].nombre<<" ha sido registrado con exito! \nPresione enter para continuar...";
@@ -176,15 +176,16 @@ void guardar(int p)
 	if(p>=0)
 	{
 	string out[3];
-	out[0]=lista[p].nombre;
-	out[1]=lista[p].carrera;
-	out[2]=lista[p].codigo;
-	char *nombre = strdup(out[0].c_str());
-	char *carrera = strdup(out[1].c_str());
-	char *codigo = strdup(out[2].c_str());
+	out[0]=lista[p].codigo;
+	out[1]=lista[p].nombre;
+	out[2]=lista[p].carrera;
+	char *codigo = strdup(out[0].c_str());
+	char *nombre = strdup(out[1].c_str());
+	char *carrera = strdup(out[2].c_str());
 	doc=fopen("datos.txt", "a+");
-	fprintf(doc, "%s, %s, %s \n", nombre, carrera, codigo);
+	fprintf(doc, "%s, %s, %s", nombre, carrera, codigo);
 	fclose(doc);
 	cout<<"Los datos han sido guardador correctamente"<<endl;
+	limpiar();
 	}
 }
