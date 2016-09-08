@@ -63,7 +63,7 @@ int main()
 			for(int x=0; x<p; x++)	imprimir(x);
 			break;
 		case 6:
-			cout<<"introduce el codigo para separar el nombre";
+			cout<<"Introduce el codigo para separar el nombre: " ;
 			cin>>cod;
 			s= buscar(cod, p);
 			guardar(s);
@@ -165,17 +165,26 @@ void limpiar()
 	system("clear");
 }
 
+int leer()
+{
+	
+	return 0;
+}
+
 void guardar(int p)
 {
-	/*doc = fopen("datos.txt", "a");*/
-	string out;
-	out=lista[p].nombre;
-	cout<<out;
-	char *holaMundo = strdup(out.c_str());
-	int len = strlen(holaMundo);
-	for(int i=0 ; i<=len;i++)
+	if(p>=0)
 	{
-		cout<<holaMundo[i]<<"-";
+	string out[3];
+	out[0]=lista[p].nombre;
+	out[1]=lista[p].carrera;
+	out[2]=lista[p].codigo;
+	char *nombre = strdup(out[0].c_str());
+	char *carrera = strdup(out[1].c_str());
+	char *codigo = strdup(out[2].c_str());
+	doc=fopen("datos.txt", "a+");
+	fprintf(doc, "%s, %s, %s \n", nombre, carrera, codigo);
+	fclose(doc);
+	cout<<"Los datos han sido guardador correctamente"<<endl;
 	}
-	
 }
