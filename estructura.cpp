@@ -31,7 +31,7 @@ int main()
     do
     {
     cout<<"Base de datos alumnos\n\n"<<endl;
-    cout<<" 1) Agregar un alumno\n 2) Consulta\n 3) Modificar\n 4) Eliminar\n 5) Ver todos los usuarios\n 6) Tomar ejemplo \n7) Salir\n\nElije una opción [ ]\b\b";
+    cout<<" 1) Agregar un alumno\n 2) Consulta\n 3) Modificar\n 4) Eliminar\n 5) Ver todos los usuarios\n 6) Exportar datos \n 7) Salir\n \nElije una opción [ ]\b\b";
     cin>>op;
     switch (op){
         case 1: 
@@ -182,7 +182,7 @@ void guardar(int p)
 	char *codigo = strdup(out[0].c_str());
 	char *nombre = strdup(out[1].c_str());
 	char *carrera = strdup(out[2].c_str());
-	doc=fopen("datos.txt", "a+");
+	doc=fopen("datos.txt", "a");
 	fprintf(doc, "%s, %s, %s", nombre, carrera, codigo);
 	fclose(doc);
 	cout<<"Los datos han sido guardador correctamente"<<endl;
